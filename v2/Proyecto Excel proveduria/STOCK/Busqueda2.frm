@@ -39,7 +39,11 @@ c = Hoja4.Range("A1", Range("A1").End(xlToRight)).count
 'MsgBox ("Fondo de column: " & UBound(matriz, 2)) Verifica la cantidad de columnas
 Lista.Clear
 
+<<<<<<< HEAD
 For i = 1 To f
+=======
+For i = LBound(matriz, 1) To UBound(matriz, 2) ' se salta el encabezado por eso lleva mas 1
+>>>>>>> BranchJulian
     If matriz(i, 2) Like "*" & busq_txt & "*" Then
         With Lista
         .AddItem
