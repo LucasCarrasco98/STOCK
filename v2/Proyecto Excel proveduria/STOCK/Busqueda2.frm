@@ -35,15 +35,18 @@ c = Hoja4.Range("A1", Range("A1").End(xlToRight)).count
             matriz(a, b) = Hoja4.Cells(a, b).Value 'se carga los valores en la matriz
         Next b
     Next a
+    
+                With Lista
+            .List = matriz
+            .ColumnCount = 6
+            .ColumnWidths = "30PT;130PT;60PT;50PT;25PT;50PT"
+            End With
 'MsgBox ("Fondo de filas: " & UBound(matriz, 1)) Verifica la cantidad de filas
 'MsgBox ("Fondo de column: " & UBound(matriz, 2)) Verifica la cantidad de columnas
-Lista.Clear
 
-<<<<<<< HEAD
+If Len(busq_txt) < 4 Then Exit Sub
+Lista.Clear
 For i = 1 To f
-=======
-For i = LBound(matriz, 1) To UBound(matriz, 2) ' se salta el encabezado por eso lleva mas 1
->>>>>>> BranchJulian
     If matriz(i, 2) Like "*" & busq_txt & "*" Then
         With Lista
         .AddItem
@@ -56,11 +59,32 @@ For i = LBound(matriz, 1) To UBound(matriz, 2) ' se salta el encabezado por eso 
         End With
     End If
 '    'https://es.stackoverflow.com/questions/329363/c%C3%B3mo-mostrar-una-matriz-en-un-formulario-de-vba
+
 Next i
+
 End Sub
 
 
 Private Sub listado_Click()
+'Dim matriz() As Variant
+'Dim f As Integer, c As Integer, a As Integer, b As Long
+'f = Hoja4.Range("A1", Range("A1").End(xlDown)).count
+'c = Hoja4.Range("A1", Range("A1").End(xlToRight)).count
+'
+'    ReDim matriz(f, c)
+'
+'    For a = 2 To f ' bucles para recorrer filas
+'        For b = 1 To c 'bucle para recorrer columnas
+'            matriz(a, b) = Hoja4.Cells(a, b).Value 'se carga los valores en la matriz
+'        Next b
+'    Next a
+'            With Lista
+'            .List = matriz
+'            End With
+End Sub
+
+Private Sub UserForm_Initialize()
+rng = Hoja4.Range("A1:Z10000").Value
 Dim matriz() As Variant
 Dim f As Integer, c As Integer, a As Integer, b As Long
 f = Hoja4.Range("A1", Range("A1").End(xlDown)).count
@@ -75,13 +99,7 @@ c = Hoja4.Range("A1", Range("A1").End(xlToRight)).count
     Next a
             With Lista
             .List = matriz
+            .ColumnCount = 6
+            .ColumnWidths = "30PT;130PT;60PT;50PT;25PT;50PT"
             End With
-End Sub
-
-Private Sub UserForm_Initialize()
-rng = Hoja4.Range("A1:Z10000").Value
-    With Lista
-    .ColumnCount = 6
-    .ColumnWidths = "30PT;130PT;60PT;50PT;25PT;50PT"
-    End With
 End Sub
